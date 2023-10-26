@@ -28,15 +28,23 @@ app.get('/feedback', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))
 );
 
-app.get('/api/diagnostics', (req, res) => {res.json(diagnosticsDb);})
 
+app.post('./api.diagnostics', (req, res) => {
+
+   let response;
+  
+  fs.writeFile = ('./db/diagnostics.json', JSON.stringify(newNotes), (err) => {
+    err ? console.error(err) : console.info(`Data written to db.json`)
+   });
+})
+
+app.get('/api/diagnostics', (req, res) => {res.json(diagnosticsDb);})
 
 app.get('*', (req, res) =>
 res.sendFile(path.join(__dirname, '/public/pages/404.html'))
 );
 
 
-app.post('./api.diagnostics', (req, res) => {})
 
 
 
